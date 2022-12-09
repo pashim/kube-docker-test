@@ -1,9 +1,17 @@
-from openjdk:20-ea-17-jdk
+FROM gradle:jdk18 as build
 
-workdir /app
+WORKDIR /build
 
-copy /build/libs/*.jar ./app.jar
+COPY . ./
 
-expose 8080
+RUN gradle build -x test
+
+FROM openjdk:18.0-jdk
+
+WORKDIR /app
+
+COPY --from=build /build/build/libs/*.jar app.jar
+
+EXPOSE 8080
 
 CMD ["java", "-jar", "app.jar"]
