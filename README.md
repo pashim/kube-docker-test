@@ -10,4 +10,6 @@ CRIBS
 3. docker inspect - inspect container
 4. docker image inspect - inspect image
 5. docker cp - copy from host to container/container to host/container to container
-6. docker images prune - deletes all unused images
+6. docker images/volumes prune - deletes all unused images/volumes
+7. VOLUME in dockerfile (e.x. /app/feedback) creates anonymous volume which will be deleted after container stop
+8. named volumes can be created by adding name prefix (feedback:/app/feedback) it will NOT be deleted after lifecycle of container
