@@ -1,5 +1,7 @@
 FROM gradle:jdk18 as build
 
+ARG DEFAULT_PORT = 8080
+
 WORKDIR /build
 
 COPY . ./
@@ -12,6 +14,8 @@ WORKDIR /app
 
 COPY --from=build /build/build/libs/*.jar app.jar
 
-EXPOSE 8080
+ENV PORT $DEFAULT_PORT
+
+EXPOSE $PORT
 
 CMD ["java", "-jar", "app.jar", "--spring.profiles.active=dev"]
