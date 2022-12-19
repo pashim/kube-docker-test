@@ -1,6 +1,9 @@
 package kz.pashim.kubedockertest.service;
 
 import jakarta.annotation.PostConstruct;
+import kz.pashim.kubedockertest.domain.UserEntity;
+import kz.pashim.kubedockertest.repository.UserRepository;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
@@ -18,10 +21,13 @@ import java.util.List;
 
 @Service
 @Slf4j
+@RequiredArgsConstructor
 public class UserService {
 
     @Value("${users.file.path}")
     private String usersFilePath;
+
+    private final UserRepository userRepository;
 
     @PostConstruct
     public void init() throws IOException {
@@ -31,6 +37,7 @@ public class UserService {
     }
 
     public void saveUser(String name) {
+        userRepository.save(UserEntity.builder().name(name).build());
         try {
             try (BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(usersFilePath, true)))) {
                 writer.write(name + "\n");
