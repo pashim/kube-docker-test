@@ -13,3 +13,5 @@ CRIBS
 6. docker images/volumes prune - deletes all unused images/volumes
 7. VOLUME in dockerfile (e.x. /app/feedback) creates anonymous volume which will be deleted after container stop
 8. named volumes can be created by adding name prefix (feedback:/app/feedback) it will NOT be deleted after lifecycle of container
+9. combining volumes is allowed. The longest path would take mount responsibility
+10. volume host-path:container-path:ro -> read only, sub volume will override parent
