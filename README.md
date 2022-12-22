@@ -3,8 +3,13 @@ CLEAN ENVIRONMENT
 sh docker-clear.sh
 ./docker-clear.bat
 
-CRIBS
+DOCKERFILE  
+1) CMD: Sets default parameters that can be overridden from the Docker Command Line Interface (CLI) while running a docker container.
+2) ENTRYPOINT: Default parameters that cannot be overridden while executing Docker Containers with CLI parameters.
+3) The ARG instruction defines a variable that users can pass at build-time to the builder with the docker build command using the --build-arg <varname>=<value> flag.
+4) The ENV instruction sets the environment variable <key> to the value <value>. The environment variables set using ENV will persist when a container is run from the resulting image.
 
+CRIBS
 1. docker attach container - attach to existing container
 2. docker run --rm - deletes container on stop
 3. docker inspect - inspect container

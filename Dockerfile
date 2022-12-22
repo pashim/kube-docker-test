@@ -1,6 +1,6 @@
 FROM gradle:jdk18 as build
 
-ARG DEFAULT_PORT = 8080
+ARG DEFAULT_PORT=8080
 
 WORKDIR /build
 
