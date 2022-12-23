@@ -6,6 +6,7 @@ volumes:
   file_data:
     external: false
 
+# docker-compose uses default group network for all services included (no need to create a specific one)
 networks:
   kube-docker-test-net:
     external: false
@@ -14,12 +15,20 @@ services:
   app:
     build:
       context: .
+      # Set dockerfile name if it differs from "Dockerfile"
+      dockerfile: Dockerfile
       args:
         DEFAULT_PORT: 8888
+    # By default takes folderName+serviceName
     container_name: kube-docker-test-app
     environment:
-      - DATASOURCE_URL=jdbc:postgresql://db:5432/dtest
+      # Alternative way to set env variable
+      # DATASOURCE_HOST: db
+      - DATASOURCE_HOST=db
       - PORT=8888
+    # Add environment variables from a file
+    # env_file:
+    #  - ./.env
     ports:
       - "8080:8888"
     depends_on:
@@ -28,6 +37,8 @@ services:
       - kube-docker-test-net
     volumes:
       - file_data:/app/user
+    # stdin_open: true (interactive mode)
+    # tty: true (attaching mode)
 
   db:
     image: postgres:13.9-alpine
@@ -40,3 +51,14 @@ services:
       - kube-docker-test-net
     volumes:
       - db_data:/var/lib/postgresql/data
+
+  # Utility container
+  npm:
+    build:
+      context: ./node
+      dockerfile: NodeUtilityDockerfile
+    container_name: kube-docker-test-node
+    volumes:
+      - ./node:/app
+    tty: true
+    stdin_open: true

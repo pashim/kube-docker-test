@@ -5,7 +5,7 @@ sh docker-clear.sh
 
 DOCKERFILE  
 1) CMD: Sets default parameters that can be overridden from the Docker Command Line Interface (CLI) while running a docker container.
-2) ENTRYPOINT: Default parameters that cannot be overridden while executing Docker Containers with CLI parameters.
+2) ENTRYPOINT: Default parameters that cannot be overridden while executing Docker Containers with CLI parameters. (it appended at the end of entrypoint)
 3) The ARG instruction defines a variable that users can pass at build-time to the builder with the docker build command using the --build-arg <varname>=<value> flag.
 4) The ENV instruction sets the environment variable <key> to the value <value>. The environment variables set using ENV will persist when a container is run from the resulting image.
 
@@ -26,4 +26,6 @@ VOLUMES
 12. docker run --env PORT=8080 / docker run -e PORT=8080 / --env-file ./env (env)
 13. docker run --build-arg DEFAULT_PORT=8080 (only inside a docker file not in runtime)
 
-NETWORK
+DOCKER-COMPOSE
+14. docker-compose build (build images)
+15. docker-compose up --build (force to rebuild images before running)
