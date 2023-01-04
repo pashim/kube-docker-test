@@ -1,36 +1,23 @@
 package kz.pashim.kubedockertest.controller;
 
-import kz.pashim.kubedockertest.service.UserService;
+import kz.pashim.kubedockertest.service.UserFileServiceImpl;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.List;
-
 @RestController
+@Slf4j
 public class HelloWorldController {
 
-    private UserService userService;
+    private UserFileServiceImpl userFileServiceImpl;
 
-    public HelloWorldController(UserService userService) {
-        this.userService = userService;
+    public HelloWorldController(UserFileServiceImpl userFileServiceImpl) {
+        this.userFileServiceImpl = userFileServiceImpl;
     }
 
     @GetMapping("/")
     public String hello() {
-        System.out.println("hello endpoint was triggered");
+        log.info("hello endpoint was triggered");
         return "Hello world!";
-    }
-
-    @GetMapping("/users/add/{name}")
-    public void addUser(@PathVariable String name) {
-        System.out.println("addUser endpoint was triggered");
-        userService.saveUser(name);
-    }
-
-    @GetMapping("/users/list")
-    public List<String> listUsers() {
-        System.out.println("listUsers endpoint was triggered");
-        return userService.listUsers();
     }
 }

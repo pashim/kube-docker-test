@@ -25,6 +25,7 @@ services:
       # Alternative way to set env variable
       # DATASOURCE_HOST: db
       - DATASOURCE_HOST=db
+      - DATASOURCE_PORT=5432
       - PORT=8888
     # Add environment variables from a file
     # env_file:
@@ -51,6 +52,9 @@ services:
       - kube-docker-test-net
     volumes:
       - db_data:/var/lib/postgresql/data
+    # to local usage
+    ports:
+      - 5432:5432
 
   # Utility container
   npm:
