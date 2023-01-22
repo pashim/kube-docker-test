@@ -1,0 +1,8 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: kube-docker-config-map
+data:
+  # property-like keys; each key maps to a simple value
+  app-datasource-port: "5432"
+  app-port: "80"

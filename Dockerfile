@@ -18,4 +18,4 @@ ENV PORT $DEFAULT_PORT
 
 EXPOSE $PORT
 
-CMD ["java", "-jar", "app.jar", "--spring.profiles.active=dev"]
+CMD ["java", "-jar", "app.jar"]

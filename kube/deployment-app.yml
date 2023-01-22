@@ -1,0 +1,38 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: app-deployment
+  labels:
+    app: backend-app-deployment
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: backend-app
+#    matchExpressions:
+#      - {key:     app, operator: In, values: [backend-app]}
+  template:
+    metadata:
+      labels:
+        app: backend-app
+    spec:
+      containers:
+        - name: kube-backend-app
+          image: pashim/kube-docker-test:0.0.4
+          env:
+            # Define the environment variable
+            - name: DATASOURCE_HOST
+              value: "db-service.default"
+            - name: DATASOURCE_PORT # Notice that the case is different here
+              # from the key name in the ConfigMap.
+              valueFrom:
+                configMapKeyRef:
+                  name: kube-docker-config-map           # The ConfigMap this value comes from.
+                  key: app-datasource-port               # The key to fetch.
+            - name: PORT
+              valueFrom:
+                configMapKeyRef:
+                  name: kube-docker-config-map
+                  key: app-port
+          ports:
+            - containerPort: 80

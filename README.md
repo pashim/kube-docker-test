@@ -29,3 +29,16 @@ VOLUMES
 DOCKER-COMPOSE
 14. docker-compose build (build images)
 15. docker-compose up --build (force to rebuild images before running)
+
+---
+KUBERNETES
+1. There are two approaches: DECLARATIVE (.yml) and IMPERATIVE (commands)
+2. ReplicaSet responsible for scaling while Deployment for updating resources (includes ReplicaSet)
+
+NETWORK
+1. By default creates ENV (SERVICE_NAME)_SERVICE_HOST - IP ADDRESS OF POD
+2. CoreDNS is implemented by default, and we can use it to target a service like (SERVICE_NAME).NAMESPACE "app-deployment.default"
+
+VOLUME
+1. PersistentVolume - creates a storage within cluster or out of it
+2. PersistentVolumeClaim - requests resource to be used from PV to pod

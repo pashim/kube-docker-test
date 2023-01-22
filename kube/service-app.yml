@@ -1,0 +1,16 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: app-service
+  labels:
+    app: backend-app-service
+spec:
+  selector:
+    app: backend-app
+  type: NodePort
+  ports:
+    - name: http
+      protocol: TCP
+      # By default, and for convenience, the `targetPort` is set to the same value as the `port` field.
+      port: 80
+      targetPort: 80
