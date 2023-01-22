@@ -34,11 +34,14 @@ DOCKER-COMPOSE
 KUBERNETES
 1. There are two approaches: DECLARATIVE (.yml) and IMPERATIVE (commands)
 2. ReplicaSet responsible for scaling while Deployment for updating resources (includes ReplicaSet)
+3. DaemonSet - Runs 1 pod per node
+4. StatefulSet - up replicas in a queue. Each replica takes data from previous pod. Each replica has an unique id
 
 NETWORK
 1. By default creates ENV (SERVICE_NAME)_SERVICE_HOST - IP ADDRESS OF POD
 2. CoreDNS is implemented by default, and we can use it to target a service like (SERVICE_NAME).NAMESPACE "app-deployment.default"
 
 VOLUME
-1. PersistentVolume - creates a storage within cluster or out of it
+1. PersistentVolume - configures storage in a storageClass
 2. PersistentVolumeClaim - requests resource to be used from PV to pod
+3. StorageClass - creates a storage within cluster or out of it 
