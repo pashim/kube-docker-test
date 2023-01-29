@@ -1,3 +1,10 @@
+# Storage class for CSI EFS
+#kind: StorageClass
+#apiVersion: storage.k8s.io/v1
+#metadata:
+#  name: efs-sc
+#provisioner: efs.csi.aws.com
+---
 apiVersion: v1
 kind: PersistentVolume
 metadata:
@@ -5,10 +12,17 @@ metadata:
 spec:
   accessModes:
     - ReadWriteOnce
+#    for AWS nodes > 1
+#    - ReadWriteMany
   volumeMode: Filesystem
   capacity:
     storage: 1Gi
+#  for AWS EFS
+#  csi:
+#    driver: efs.csi.aws.com
+#    volumeHandle: fs-59d14521 (efs id)
   hostPath:
     path: /data/db-pv/
     type: DirectoryOrCreate
   storageClassName: ""
+#  storageClassName: efs-sc

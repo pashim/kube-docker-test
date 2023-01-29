@@ -7,9 +7,10 @@ metadata:
 spec:
   selector:
     app: backend-app
-  type: LoadBalancer
+#  type for AWS
+#  type: LoadBalancer
 #  type for Minikube
-#  type: NodePort
+  type: NodePort
   ports:
     - name: http
       protocol: TCP
