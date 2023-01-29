@@ -45,3 +45,7 @@ VOLUME
 1. PersistentVolume - configures storage in a storageClass
 2. PersistentVolumeClaim - requests resource to be used from PV to pod
 3. StorageClass - creates a storage within cluster or out of it 
+
+---
+RESOURCE
+https://www.udemy.com/course/docker-kubernetes-the-practical-guide/
