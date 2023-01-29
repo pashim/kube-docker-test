@@ -7,7 +7,9 @@ metadata:
 spec:
   selector:
     app: backend-app
-  type: NodePort
+  type: LoadBalancer
+#  type for Minikube
+#  type: NodePort
   ports:
     - name: http
       protocol: TCP
